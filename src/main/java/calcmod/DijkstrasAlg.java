@@ -83,14 +83,17 @@ public class DijkstrasAlg {
 
 //  end algorithm ---------------------------------------------------------------
 
+    // <!---------------------------- EDIT ------------------------------------->
+
     //this method is start algorithm(get matrix) and return Versh's list (path)
     public List<Integer> run(int[][] arr,int numStartVer,int numEndVer) {
-
+        if (numEndVer==numStartVer) throw new IllegalArgumentException("Beginning city=ending city!");
         if(numStartVer>numEndVer){
             int tmp=numStartVer;
             numStartVer=numEndVer;
             numEndVer=tmp;
         }
+        this.numStartVer=numStartVer;
 
         arr=balanceMatrix(arr,0,numStartVer);//start versh go to beginning at the matrix
         arr=balanceMatrix(arr,numEndVer,arr.length-1);//end versh go to ending at the matrix
@@ -118,7 +121,7 @@ public class DijkstrasAlg {
         List<Integer> list=new ArrayList<Integer>();
         StringBuilder result = new StringBuilder();
         while (true) {
-            result.insert(0, point+1);
+            result.insert(0,point+1);
             point = map[point];
             if (point < 0) {
                 break;
@@ -128,11 +131,16 @@ public class DijkstrasAlg {
         char [] charstr=str.toCharArray();
         for(int i=0;i<charstr.length;i++)
         {
-            list.add(Integer.parseInt(String.valueOf(charstr[i])));
+            if(i==0) list.add(numStartVer+1);
+            else
+            {
+                list.add(Integer.parseInt(String.valueOf(charstr[i])));
+            }
         }
+
+
         return list;
     }
-
 
     //Balance-matrix mechanism for simplification algorithm
     public int[][] balanceMatrix(int[][] matrix,int beginVer, int changedVer){
@@ -143,16 +151,19 @@ public class DijkstrasAlg {
         int tmp;//temporary variable
 
         for(int i=0;i<arr.length  ;i++){
-
-                    tmp = arr[i][beginVer - 1];
-                    arr[i][beginVer - 1] = arr[i][changedVer - 1];
-                    arr[i][changedVer - 1] = tmp;
+            if(changedVer!=0 && beginVer!=0) {
+                tmp = arr[i][beginVer - 1];
+                arr[i][beginVer - 1] = arr[i][changedVer - 1];
+                arr[i][changedVer - 1] = tmp;
+            }
         }
         for(int j=0;j<arr.length;j++){
 
-            tmp = arr[beginVer - 1][j];
-            arr[beginVer - 1][j] = arr[changedVer - 1][j];
-            arr[changedVer - 1][j] = tmp;
+            if(changedVer!=0 && beginVer!=0) {
+                tmp = arr[beginVer - 1][j];
+                arr[beginVer - 1][j] = arr[changedVer - 1][j];
+                arr[changedVer - 1][j] = tmp;
+            }
         }
         return arr;
     }

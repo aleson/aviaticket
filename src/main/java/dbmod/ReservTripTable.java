@@ -5,6 +5,7 @@ import privatecabinetmod.Order;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class ReservTripTable extends DBconnect{
@@ -15,10 +16,10 @@ public class ReservTripTable extends DBconnect{
     private int id,idflights,idusers;
 
     //from DB select all trip-orders
-    public Vector getAllOrdersFromDB() throws SQLException
+    public ArrayList getAllOrdersFromDB() throws SQLException
     {
         //Variable with result
-        Vector res = new Vector();
+        ArrayList res = new ArrayList();
 
         String query = SELECT_ALL_RESERVETRIPS;
         // Create query
@@ -26,7 +27,7 @@ public class ReservTripTable extends DBconnect{
 
         while(resultSet.next())
         {
-            Vector element = new Vector();
+            ArrayList element = new ArrayList();
 
             id = resultSet.getInt("ID");//2
             idflights=resultSet.getInt("IDFLIGHT");//1

@@ -27,9 +27,9 @@ public class TestCalcMod {
     }
     @Ignore
     public void TestAlg() throws IOException {
-        alg.balanceMatrix(array,1,3);
+        //alg.balanceMatrix(array,1,3);
     }
-    @Test
+    @Ignore
     public void TestFilterAlg() throws SQLException, ParseException {
         FilterAlg fa=new FilterAlg();
         System.out.println(fa.getOptimalCostPath(1, 5));

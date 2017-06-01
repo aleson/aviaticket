@@ -9,7 +9,7 @@ import usermod.User;
 
 public class TestDatabase {
 
-    @Test
+    @Ignore
     public void TestUsersTable() throws Exception{
         UsersTable con =new UsersTable();
         System.out.println(con.getAllUsersFromDB());
@@ -45,7 +45,7 @@ public class TestDatabase {
         table.closeConnection();
 
     }
-    @Test
+    @Ignore
     public void TestAeroportsTable() throws Exception{
         AeroportsTable con =new AeroportsTable();
         System.out.println(con.getAllAeroportsFromDB());
@@ -66,7 +66,7 @@ public class TestDatabase {
 
 
     }
-    @Test
+    @Ignore
     public void TestForRole() throws Exception{
         UsersTable con2 =new UsersTable();
         User u=con2.getUserById(1);
@@ -75,7 +75,7 @@ public class TestDatabase {
         System.out.println(u.getRole());
 
     }
-    @Test
+    @Ignore
     public void TestReservTripTable() throws Exception{
         ReservTripTable rtt=new ReservTripTable();
         rtt.addOrder(3,4);
@@ -90,7 +90,7 @@ public class TestDatabase {
         System.out.println(rtt4.getAllOrdersFromDB());
         rtt4.closeConnection();
     }
-    @Test
+    @Ignore
     public void TestFlightsTable() throws Exception{
         FlightsTable flightsTable=new FlightsTable();
         System.out.println(flightsTable.getAllFlightsFromDB());
