@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Spring MVC-4.3.8.RELEASE" type="spring-mvc">
+    <properties version="4.3.8.RELEASE" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/spring-web-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-webmvc-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-webmvc-portlet-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-websocket-4.3.8.RELEASE.jar!/" />
+      <root url="jar://D:/sqldeveloper-4.2.0.17.089.1709-x64/sqldeveloper/jdbc/lib/ojdbc8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
