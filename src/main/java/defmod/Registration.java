@@ -15,6 +15,6 @@ public class Registration {
                 System.out.println("Registry finished successfully");
             }
         };
-
     }
+
 }

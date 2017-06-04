@@ -3,21 +3,16 @@ import dbmod.ReservTripTable;
 import dbmod.UsersTable;
 import org.junit.Ignore;
 import org.junit.Test;
-import privatecabinetmod.Flight;
-import privatecabinetmod.Order;
-import privatecabinetmod.Path;
-import privatecabinetmod.Validate;
+import privatecabinetmod.*;
 import usermod.User;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 
-/**
- * Created by ????????? on 17.05.2017.
- */
+
 public class TestPrivateCabinetMod {
 
-    @Test
+    @Ignore
     public void testFlight() throws SQLException, ParseException {
 
         FlightsTable oft=new FlightsTable();
@@ -65,10 +60,28 @@ public class TestPrivateCabinetMod {
     }
 
 
-    @Ignore
-    public void testPath() throws Exception{
+    @Test
+    public void testPath(){
         Path path=new Path();
-        path.getPath();
+        System.out.println(path.buildTimePath(5, 1));
+        System.out.println(path.getPathlist());
     }
+
+    @Ignore /*<!---->*/
+    public void testCabinet() throws SQLException {
+        UsersTable ut=new UsersTable();
+        User user=ut.getUserById(1);
+        ut.closeConnection();
+        Cabinet cabinet=new Cabinet(user);
+        System.out.println(cabinet.createOptimalTimeOrder(1,5));
+        System.out.println(cabinet.viewUsersOrders());
+    }
+    @Ignore
+    public void testStandardOrderCabinet(User user){
+        Cabinet cabinet= new Cabinet(user);
+        System.out.println(cabinet.createStandartOrder(3));
+        System.out.println(cabinet.viewUsersOrders());
+    }
+
 
 }

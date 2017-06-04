@@ -1,5 +1,8 @@
 package usermod;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class User implements Userable {
 
     private int id;//User's index
@@ -33,7 +36,9 @@ public class User implements Userable {
     }
 
     public void setFio(String fio) {
-        if(fio.isEmpty() || fio.length()<4)
+        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");
+        Matcher m = p.matcher(fio);
+        if(m.matches()==false)
             throw new IllegalArgumentException("Name is incorrect");
         this.fio = fio;
     }
@@ -43,7 +48,9 @@ public class User implements Userable {
     }
 
     public void setLogin(String login) {
-        if(login.isEmpty() || login.length()<4)
+        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");//not " " and empty string, 4<=length<=12
+        Matcher m = p.matcher(login);
+        if(m.matches()==false)
             throw new IllegalArgumentException("Login incorrected");
         //меньше трех для таких логинов как Oleg,Egor и.т.д.
         this.login = login;
@@ -54,7 +61,9 @@ public class User implements Userable {
     }
 
     public void setPass(String pass) {
-        if(pass.isEmpty() || (pass.length()<4 && pass.length()>12))
+        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");
+        Matcher m = p.matcher(pass);
+        if(m.matches()==false)
             throw new IllegalArgumentException("Pass incorrected");
         this.pass = pass;
     }
