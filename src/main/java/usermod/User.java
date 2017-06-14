@@ -36,7 +36,7 @@ public class User implements Userable {
     }
 
     public void setFio(String fio) {
-        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");
+        Pattern p=Pattern.compile("^[[^$ ]a-z A-Z0-9]{3,50}+");
         Matcher m = p.matcher(fio);
         if(m.matches()==false)
             throw new IllegalArgumentException("Name is incorrect");
@@ -48,7 +48,7 @@ public class User implements Userable {
     }
 
     public void setLogin(String login) {
-        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");//not " " and empty string, 4<=length<=12
+        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,18}+");//not " " and empty string, 4<=length<=12
         Matcher m = p.matcher(login);
         if(m.matches()==false)
             throw new IllegalArgumentException("Login incorrected");
@@ -61,7 +61,7 @@ public class User implements Userable {
     }
 
     public void setPass(String pass) {
-        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,12}+");
+        Pattern p=Pattern.compile("^[[^$ ]a-zA-Z0-9]{4,18}+");
         Matcher m = p.matcher(pass);
         if(m.matches()==false)
             throw new IllegalArgumentException("Pass incorrected");
