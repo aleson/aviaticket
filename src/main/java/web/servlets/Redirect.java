@@ -8,19 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Random;
 
 public class Redirect extends HttpServlet{
 
-    static {
-        Random rand=new Random(); //for generate id session
-        Integer i=rand.nextInt();
-        sessionId=i.toString();
-    }
 
     private static int count=0;//counter requests for page
-    private static final String sessionId;
 
     private static String password;
     private static String login;
@@ -35,17 +29,22 @@ public class Redirect extends HttpServlet{
         //validates
             Autentification aut = new Autentification();
             User user = aut.findUser(login, password);
+        //data transport
         if(user!=null){
         if(user.getLogin().equals(login) && user.getPass().equals(password)) {
+            HttpSession session = req.getSession(true);
 
-            req.setAttribute("current_count", count);
-            req.setAttribute("name",user.getFio());
-            req.setAttribute("money",user.getMoney());
-            req.setAttribute("sessionId",sessionId);
-            req.setAttribute("role",user.getRole());
+            session.setAttribute("current_count", count);
+            session.setAttribute("name",user.getFio());
+            session.setAttribute("money",user.getMoney());
+            session.setAttribute("role",user.getRole());
 
+
+            session.setAttribute("sessionIdx", login);
+            session.setMaxInactiveInterval(5*60);//5 minutes
+            System.out.println(login +"->");
             isError=false;
-            req.getRequestDispatcher("cabinet.jsp").forward(req, resp);
+            req.getRequestDispatcher("under.jsp").forward(req, resp);
         }
         else{
             isError=true;

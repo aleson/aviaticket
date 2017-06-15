@@ -2,7 +2,7 @@ body{
     margin-left:10%;
     margin-right:10%;
     background-size:100%;
-    background-color: beige;
+    background-color: #0b4980;
     color: whitesmoke;
 }
 .formex{
@@ -50,7 +50,7 @@ body{
 
 .bottom{
 
-    <!--background-image:url(../resources/hosp_back1.jpg);-->
+<!--background-image:url(../resources/hosp_back1.jpg);-->
     border:2px;
     -webkit-border-radius:10px;
     padding: 10px; /* Поля вокруг текста */
@@ -74,6 +74,20 @@ body{
     font-size: 16px;
     color:dodgerblue;
     background-color:azure;
+    border:2px double dodgerblue;
+    -webkit-border-radius:10px;
+    margin-left: 0px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.menubut{
+
+    width: 150px;
+    height: 44px;
+    font-size: 16px;
+    color:black;
+    background-color: #5f69c6;
     border:2px double dodgerblue;
     -webkit-border-radius:10px;
     margin-left: 0px;

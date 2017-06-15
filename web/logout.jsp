@@ -1,7 +1,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    //Necessary edit session !
+    session.removeAttribute("name");
+    session.removeAttribute("money");
+    session.removeAttribute("sessionIdx");
+    session.removeAttribute("role");
+    session.removeAttribute("current_count");
     session.invalidate();
 %>
 <jsp:forward page="index.jsp"></jsp:forward>

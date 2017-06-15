@@ -39,7 +39,7 @@
         <tr><td >
             <table border="0" width="300"><td>
             <span><!-- button - Registration -->
-                <input align="left" type="submit" class="entery" value="Регистрация" />
+                <input align="left" type="submit" class="entery" value="Регистрация"/>
             </span>
             </td><td align="right">
             <span><a href="index.jsp">Отмена</a></span>
