@@ -40,9 +40,8 @@ public class Redirect extends HttpServlet{
             session.setAttribute("role",user.getRole());
 
 
-            session.setAttribute("sessionIdx", login);
+            session.setAttribute("sessionIdx", login);//main session create from login
             session.setMaxInactiveInterval(5*60);//5 minutes
-            System.out.println(login +"->");
             isError=false;
             req.getRequestDispatcher("under.jsp").forward(req, resp);
         }

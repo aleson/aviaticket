@@ -34,8 +34,9 @@ public class AeroportsTable extends DBconnect {
             id = resultSet2.getString("ID"); //1-Since an SQLException: "Fail to convert to internal representation" appears
             city=resultSet2.getString("CITY"); //2-then id have type String
             // Добавляем по порядку
-            element.add(city);
             element.add(id);
+            element.add(city);
+
 
             //Add list to result
             res.add(element);

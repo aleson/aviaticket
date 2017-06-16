@@ -1,10 +1,13 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    System.out.println(session.getAttribute("sessionIdx"));
-    if (session.getAttribute("sessionIdx")==null){
-    response.sendRedirect("index.jsp");
-}
+    if (session.getAttribute("sessionIdx")==null) {
+        response.sendRedirect("index.jsp");
+    }
+    if(session.getAttribute("role")!=null){
+        if(!session.getAttribute("role").equals(1)) response.sendRedirect("index.jsp");
+    }
+
 %>
 
 <html>

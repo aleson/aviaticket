@@ -2,7 +2,7 @@
 <%
   if(session.getAttribute("sessionIdx")!=null){
 
-    if(session.getAttribute("role").equals(2)) response.sendRedirect("adminpanel.jsp");
+    if(session.getAttribute("role").equals(2)) response.sendRedirect("/admin");
     else response.sendRedirect("cabinet.jsp");
   }
   else{

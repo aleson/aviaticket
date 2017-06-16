@@ -1,10 +1,15 @@
-
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-    System.out.println(session.getAttribute("sessionIdx"));
+
     if (session.getAttribute("sessionIdx")==null) {
         response.sendRedirect("index.jsp");
     }
+    if(session.getAttribute("role")!=null){
+        if(!session.getAttribute("role").equals(2)) response.sendRedirect("index.jsp");
+    }
+
 %>
 
 
@@ -21,7 +26,7 @@
         <td>
             <table border="0">
                 <td>
-                    <form name="moduleheader" id="modhead" class="head">
+                    <div name="moduleheader" class="head">
                     <span>
                         <table border="0" width="900">
                             <td width="200">
@@ -39,76 +44,170 @@
                     </span>
                     <span>
                      </span>
-                    </form>
-                </td><td>
-                <form name="moduleex" id="modex" class="formex" action="logout.jsp" method="POST"><!--EXIT-->
-                    <span><input type="submit" class="exit" value="Выйти" />
 
+                    </div>
+                    </td><td>
+                    <div name="moduleex" class="formex">
+
+                    <span>
+                        <a href="logout.jsp"><input type="submit" class="exit" value="Выйти"/></a>
                     </span>
-                </form>
+
+                </div>
             </td>
             </table>
         </td>
     </tr>
     <tr>
         <td>
-            <form name="modulbody" id="modbod" class="body">
-                <span></span>
-                <table border="1" width="960" height="520">
-                    <td width="160">
-                        <table border="1"><tr><td>
-                            <p align="center"><h3><font color="black">Меню:</font></h3></p>
-                        </td></tr>
-                            <tr><td>
-                                    <input type = "button" class="menubut" value = "Править клиента" onClick = "editclientbut()" />
-                                <script>
-                                    function editclientbut()
-                                    {
-                                        window.location = ""
-                                    }
-                                </script>
-                            </td></tr>
-                            <tr><td>
-                                <input type="button" class="menubut" value="Удалить клиента" onClick="deleteclientbut()"/>
-                                <script>
-                                    function deleteclientbut()
-                                    {
-                                        window.location = ""
-                                    }
-                                </script>
-                            </td></tr>
-                        </table>
 
+
+            <div name="modulbody" class="body">
+            <form id="modbod" action="/admin" method="POST">
+
+               <table border="0" width="460" height="520">
+                    <td width="110">
+                        <table border="0"><tr><td>
+                                <p align="center"><h3><font color="black">Клиенты:</font></h3></p>
+                            </td></tr>
+                            <tr><td>
+                                <form id="form" action="/admin" method="POST">
+                                    <a href="/admin" methods="POST"><input type = "button" class="menubut" value = "Обновить"/></a>
+                                </form>
+                            </td></tr>
+                            <tr><td>
+                                <p align="center"><h3><font color="black">Города:</font></h3></p>
+                            </td></tr>
+                            <tr><td>
+                                <form  action="/airadmin" method="POST">
+                                    <a href="/airadmin" methods="POST"><input type = "button" class="menubut" value = "Перейти"/></a>
+                                </form>
+                            </td></tr>
+                            <tr><td>
+                                <p align="center"><h3><font color="black">Рейсы:</font></h3></p>
+                            </td></tr>
+                            <tr><td>
+                                <form  action="/airflights" method="POST">
+                                    <a href="/airflights" methods="POST"><input type = "button" class="menubut" value = "Перейти"/></a>
+                                </form>
+                            </td></tr>
+                            <tr><td>
+                                <p align="center"><h3><font color="black">Заказы:</font></h3></p>
+                            </td></tr>
+                            <tr><td>
+                                <form  action="/adminorders" method="POST">
+                                    <a href="/adminorders" methods="POST">
+                                        <input type = "button" class="menubut" value = "Перейти"/></a>
+                                </form>
+                            </td></tr>
+                            <tr><td height="145"></td></tr>
+                        </table>
                     </td>
-                    <td width="800">
-                        <table width="800" border="1">
+                    <td width="300">
+                        <table  border="0" width="300">
                             <tr>
                                 <td height="360">
-                                    <font color="black"> Функционал </font>
+                                    <table border="0"><tr ><td width="200">
+                                    <%
+                                        List list=(List)request.getAttribute("array");
+                                        int cx=0;//counter
+                                        int cl=0;
+                                    %>
+                                        <c:set var="array" value="<%=list%>"/><!--Variable for arr<User>-->
+                                        <c:set var="cx" value="<%=cx%>"/>
+                                        <select multiple id="list" size="10">
+                                            <c:forEach var="clip" items="${array}" varStatus="сounter" >
+                                                <option id="${cx}"><font color="BLACK">${clip}</font></option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                    </tr>
+                                        <tr><td>
+                                            <font color="black"> Введите номер клиента:   </font>
+
+                                        </td><tr><td>
+                                            <form action="/admin" method="post">
+                                                <span><input type="text" id="x" name="x" class="client" value="" size="10" /></span>
+                                                <span><input id="del" name="del" type="submit" class="delete" value="Удалить" /></span>
+                                                <span><input id="edi" name="edi" type="submit" class="redact" value="Выбрать"/></span>
+                                            </form>
+
+
+
+                                        </td></tr>
+
+                                        <td><font color="black"> Количество клиентов: <%=request.getAttribute("list_size")%> </font>
+
+                                        </td></tr>
+                                        <td>
+                                            <form action="/admin" method="post">
+                                            <table>
+                                            <%
+                                                int i;
+                                            if(request.getAttribute("ednum")==null){
+                                                i=0;
+                                            }else {
+                                                i=Integer.parseInt(request.getAttribute("ednum").toString())-1;
+                                            }
+                                            %>
+                                            <c:set var="cl" value="<%=cl%>"/>
+                                            <c:forEach var="clip" items="${array}" begin="<%=i%>" end="<%=i%>" >
+                                                <c:forEach var="iter" items="${clip}" begin="0" end="5">
+                                                    <c:set  var="cl" value="${cl+1}"/>
+                                                        <input type="text" name="${cl}" value="${iter}" size="20"/>
+                                                </c:forEach>
+                                            </c:forEach>
+                                            </td><td>
+
+                                                    <span><input id="re" name="re" type="submit" class="redact" value="Изменить"/></span>
+
+                                            </td></table> </form>
+                                        </td></tr>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td height="180">
+                                <td height="140">
                                     <font color="black">
-                                        <p>Сессия: '<%=session.getId()%>'</p>
-                                        <p>Время действия сессии: <%= session.getMaxInactiveInterval() %> секунд</p>
+                                        <p> id Сессии: <%=session.getId()%></p>
+                                        <p>Время действия сессии: <%= session.getMaxInactiveInterval()/60 %> мин.</p>
                                     </font>
                                 </td>
+                            </tr>
+                            <tr>
 
                             </tr>
                         </table>
-                        Функционал
-
+                    </td>
+                    <td><table><tr><td>
+                        <table border="1" class="block" width="300"><tr><td>
+                            <font color="black">
+                                Обозначения:<br>
+                                <br>
+                                1 - номер рейса<br>
+                                2 - Имя пользователя<br>
+                                3 - баланс пользователя(RUR)<br>
+                                4 - логин<br>
+                                5 - пароль<br>
+                                6 - номер группы<br>
+                            </font>
+                        </td></tr>
+                        </table>
+                        </td></tr>
+                        <tr><td height="422"></td></tr>
+                    </table>
                     </td>
                 </table>
+
             </form>
+            </div>
         </td>
     </tr>
     <tr>
         <td>
-            <form name="modulbot" id="modbot" class="bottom">
-                <span>Footer</span>
-            </form>
+            <div name="modulbot"  class="bottom">
+                <span><p align="center"> Aviacomapny site 2017</p></span>
+            </div>
         </td>
     </tr>
 </table>

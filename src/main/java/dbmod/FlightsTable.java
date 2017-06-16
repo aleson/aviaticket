@@ -20,6 +20,8 @@ public class FlightsTable extends DBconnect {
     private float cost;
     private Date date=new Date();
 
+    protected int size=0;
+
 
     private int arrhours,arrminutes;
 
@@ -67,14 +69,14 @@ public class FlightsTable extends DBconnect {
             element.add(arrhours);
             element.add(arrminutes);
             element.add(timeflight);
-
+            size++;
             //Add list to result
             res.add(element);
+
         }
         //flush resources
         resultSet.close();
-        st.close();
-        conn.close();
+
         return res;
     }
 
@@ -138,7 +140,6 @@ public class FlightsTable extends DBconnect {
         ps.executeUpdate();
         ps.close();
     }
-
 
     //Delete flight from database
     public void deleteFlightByID(int ids) throws SQLException{

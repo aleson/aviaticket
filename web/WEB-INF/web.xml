@@ -22,6 +22,42 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>Adminorders</servlet-name> 
+        <servlet-class>web.servlets.Adminorders</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Adminorders</servlet-name>
+        <url-pattern>/adminorders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>web.servlets.Admin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Airadmin</servlet-name>
+        <servlet-class>web.servlets.Airadmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Airadmin</servlet-name>
+        <url-pattern>/airadmin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Airglights</servlet-name>
+        <servlet-class>web.servlets.Airflights</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Airglights</servlet-name>
+        <url-pattern>/airflights</url-pattern>
+    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

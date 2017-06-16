@@ -42,7 +42,7 @@ public class TestPrivateCabinetMod {
     }
 
     @Ignore
-    public void testOrder() throws SQLException {
+    public void testOrder() throws SQLException, ParseException {
         ReservTripTable rtt=new ReservTripTable();
         rtt.addOrder(3,1);
         rtt.closeConnection();

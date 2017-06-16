@@ -5,12 +5,25 @@ import privatecabinetmod.Order;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class ReservTripTable extends DBconnect{
 
+    private int valuser;
+    private int  valflt;
+    private UsersTable ut =new UsersTable();
+    private FlightsTable ft=new FlightsTable();
+
     public ReservTripTable() throws SQLException {
+
+        valuser=ut.getAllUsersFromDB().size();
+        try {
+            valflt=ft.getAllFlightsFromDB().size();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private int id,idflights,idusers;
@@ -41,8 +54,6 @@ public class ReservTripTable extends DBconnect{
         }
         //flush resources
         resultSet.close();
-        st.close();
-        conn.close();
         return res;
     }
 
@@ -61,13 +72,16 @@ public class ReservTripTable extends DBconnect{
     }
 
     //Add trip-order into database
-    public void addOrder(int userId,int flightsId) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO RESERVTRIP (RESERVTRIP.IDFLIGHT,RESERVTRIP.ID,RESERVTRIP.IDUSER) VALUES (?,?,?)");
-        ps.setInt(1, flightsId);
-        ps.setInt(2, getMaxId(SELECT_ALL_RESERVETRIPS)+1);
-        ps.setInt(3, userId);
-        ps.executeUpdate();
-        ps.close();
+    public void addOrder(int userId,int flightsId) throws SQLException {
+        if( !(userId>0 && userId<=valuser) || !(flightsId>0 && flightsId<=valflt)) {throw new IllegalAccessError("incorrect id user or flight");}
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO RESERVTRIP (RESERVTRIP.IDFLIGHT,RESERVTRIP.ID,RESERVTRIP.IDUSER) VALUES (?,?,?)");
+            ps.setInt(1, flightsId);
+            ps.setInt(2, getMaxId(SELECT_ALL_RESERVETRIPS) + 1);
+            ps.setInt(3, userId);
+            ps.executeUpdate();
+            ps.close();
+
+
     }
     //Delete trip-order from database
     public void deleteOrderByID(int ids) throws SQLException{

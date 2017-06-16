@@ -14,7 +14,7 @@ public class TestDefMod {
     @Test
     public void findUser(){
         Autentification aut=new Autentification();
-        System.out.println(aut.findUser("Ibrom","1234").getFio());
+        //System.out.println(aut.findUser("Ibrom","1234").getFio());
 
     }
 

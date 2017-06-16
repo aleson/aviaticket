@@ -25,6 +25,7 @@
       <root url="jar://D:/apache-tomcat-7.0.78-windows-x64/apache-tomcat-7.0.78/lib/naming-factory.jar!/" />
       <root url="jar://D:/apache-tomcat-7.0.78-windows-x64/apache-tomcat-7.0.78/lib/naming-resources.jar!/" />
       <root url="jar://D:/apache-tomcat-7.0.78-windows-x64/apache-tomcat-7.0.78/lib/ojdbc6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jstl-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
