@@ -131,8 +131,8 @@
                           Обозначения:<br>
                           <br>
                           1 - номер заказа<br>
-                          2 - номер рейса<br>
-                          3 - номер клиента<br>
+                          2 - номер клиента<br>
+                          3 - номер рейса<br>
                           (для полей ниже)<br>
                         </font>
                       </td></tr>
@@ -164,18 +164,19 @@
                               }else {
                                 z=Integer.parseInt(request.getAttribute("ordernum").toString())-1;
                               }
-
-                              System.out.println("z = "+z);
                             %>
+
                             <c:set var="c4" value="<%=c4%>"/>
+                            <table>
                             <c:forEach var="clip" items="${array4}" begin="<%=z%>" end="<%=z%>" >
                               <c:forEach var="iter" items="${clip}" varStatus="counter">
-                                <c:set  var="c4" value="${c4+1}"/>
+                                <tr><td><c:set  var="c4" value="${c4+1}"/>
+                                <font color="black"><c:out value="${c4}"/></font>
                                   <input type="text" name="=${c4}" value="${iter}" size="20"/>
-                                  <font color="black"><c:out value="${iter}"/></font>
+                              </td></tr>
                               </c:forEach>
                             </c:forEach>
-
+                            </table>
 
                             <span><input id="order_re" name="order_re" type="submit" class="redact" value="Обновить"/></span>
                             <span><input id="addorder" name="addorder" type="submit" class="delete" value="Добавить" /></span>
