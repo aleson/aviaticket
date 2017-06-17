@@ -95,8 +95,8 @@
                   <p align="center"><h3><font color="black">Заказы:</font></h3></p>
                 </td></tr>
                 <tr><td>
-                  <form  action="/adminorders" method="POST">
-                    <a href="/adminorders" methods="POST">
+                  <form  action="/adminorder" method="POST">
+                    <a href="/adminorder" methods="POST">
                       <input type = "button" class="menubut" value = "Обновить"/></a>
                   </form>
                 </td></tr>
@@ -146,7 +146,7 @@
                       <tr><td>
                         <font color="black"> Введите номер города:   </font>
                       </td><tr><td>
-                        <form action="/adminorders" method="post">
+                        <form action="/adminorder" method="post">
                           <span><input type="text" id="x4" name="x4" class="client" value="" size="10" /></span>
                           <span><input id="edorder" name="edorder" type="submit" class="redact" value="Выбрать"/></span>
                           <span><input id="delorder" name="delorder" type="submit" class="delete" value="Удалить" /></span>
@@ -156,7 +156,7 @@
                       <td><font color="black"> Количество заказов: <%=request.getAttribute("list_size4")%> </font>
                       </td></tr>
                       <td>
-                        <form action="/adminorders" method="post">
+                        <form action="/adminorder" method="post">
                             <%
                               int z;
                               if(request.getAttribute("ordernum")==null){

@@ -95,8 +95,8 @@
                                 <p align="center"><h3><font color="black">Заказы:</font></h3></p>
                             </td></tr>
                             <tr><td>
-                                <form  action="/adminorders" method="POST">
-                                    <a href="/adminorders" methods="POST">
+                                <form  action="/adminorder" method="POST">
+                                    <a href="/adminorder" methods="POST">
                                         <input type = "button" class="menubut" value = "Перейти"/></a>
                                 </form>
                             </td></tr>

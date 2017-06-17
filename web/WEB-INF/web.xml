@@ -23,12 +23,12 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Adminorders</servlet-name> 
-        <servlet-class>web.servlets.Adminorders</servlet-class>
+        <servlet-name>Adminorder</servlet-name>
+        <servlet-class>web.servlets.Adminorder</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Adminorders</servlet-name>
-        <url-pattern>/adminorders</url-pattern>
+        <servlet-name>Adminorder</servlet-name>
+        <url-pattern>/adminorder</url-pattern>
     </servlet-mapping>
 
     <servlet>
