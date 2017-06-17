@@ -58,6 +58,18 @@
         <url-pattern>/airflights</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>Cabinet</servlet-name> 
+        <servlet-class>web.servlets.Cabinet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cabinet</servlet-name>
+        <url-pattern>/cabinet</url-pattern>
+    </servlet-mapping>
+    
+    
+    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

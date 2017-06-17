@@ -2,13 +2,14 @@ package privatecabinetmod;
 
 import dbmod.FlightsTable;
 import dbmod.ReservTripTable;
+import dbmod.UsersTable;
 import usermod.User;
 
 import java.sql.SQLException;
 import java.util.*;
 
 //This class is a class for controlling the actions of a particular user.
-public class Cabinet {
+public class PrivateCabinet {
 
     private User user;
     private Order order;
@@ -21,8 +22,8 @@ public class Cabinet {
         return arrayOrders;
     }
 
-    public Cabinet(User user){
-        if(user==null) throw new IllegalArgumentException("Cabinet must be real user");
+    public PrivateCabinet(User user){
+        if(user==null) throw new IllegalArgumentException("PrivateCabinet must be real user");
         this.user=user;
     }
 
@@ -41,9 +42,12 @@ public class Cabinet {
            if(Validate.isPay(user,flight)==true){ //if user is payable
                try
                {
-                   ReservTripTable rtt= new ReservTripTable();
+                   ReservTripTable rtt= new ReservTripTable(); //add order on user
                    rtt.addOrder(user.getId(), flight.getId()); //create Order in database
                    rtt.closeConnection();
+
+                   UsersTable ut=new UsersTable(); //refresh user
+                   ut.editUser(user.getId(),user.getFio(),user.getMoney()-flight.getCost(),user.getLogin(),user.getPass(),user.getRole());
 
                    return true;
                } catch (Exception e) {

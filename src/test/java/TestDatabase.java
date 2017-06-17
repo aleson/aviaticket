@@ -6,8 +6,17 @@ import org.junit.Ignore;
 import org.junit.Test;
 import usermod.User;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+
 
 public class TestDatabase {
+
+    @Ignore
+    public void TestCitiesFilght() throws SQLException, ParseException {
+        FlightsTable ft=new FlightsTable();
+        System.out.println("2,5="+ft.getIdFlightByCities(2, 5));
+    }
 
     @Ignore
     public void TestUsersTable() throws Exception{

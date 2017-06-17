@@ -3,6 +3,7 @@ package dbmod;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -16,10 +17,10 @@ public class AeroportsTable extends DBconnect {
 
 
     //Select all airports
-    public Vector getAllAeroportsFromDB() throws SQLException
+    public ArrayList getAllAeroportsFromDB() throws SQLException
     {
         //Variable-list
-        Vector res = new Vector();
+        ArrayList res = new ArrayList();
 
         String query = SELECT_ALL_AEROPORTS;
         //Running query
@@ -29,7 +30,7 @@ public class AeroportsTable extends DBconnect {
         while(resultSet2.next())
         {
             //Create new List-variable
-            Vector element = new Vector();
+            ArrayList element = new ArrayList();
 
             id = resultSet2.getString("ID"); //1-Since an SQLException: "Fail to convert to internal representation" appears
             city=resultSet2.getString("CITY"); //2-then id have type String

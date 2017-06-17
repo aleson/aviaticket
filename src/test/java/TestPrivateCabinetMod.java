@@ -72,15 +72,15 @@ public class TestPrivateCabinetMod {
         UsersTable ut=new UsersTable();
         User user=ut.getUserById(1);
         ut.closeConnection();
-        Cabinet cabinet=new Cabinet(user);
-        System.out.println(cabinet.createOptimalTimeOrder(1,5));
-        System.out.println(cabinet.viewUsersOrders());
+        PrivateCabinet privateCabinet =new PrivateCabinet(user);
+        System.out.println(privateCabinet.createOptimalTimeOrder(1,5));
+        System.out.println(privateCabinet.viewUsersOrders());
     }
     @Ignore
     public void testStandardOrderCabinet(User user){
-        Cabinet cabinet= new Cabinet(user);
-        System.out.println(cabinet.createStandartOrder(3));
-        System.out.println(cabinet.viewUsersOrders());
+        PrivateCabinet privateCabinet = new PrivateCabinet(user);
+        System.out.println(privateCabinet.createStandartOrder(3));
+        System.out.println(privateCabinet.viewUsersOrders());
     }
 
 

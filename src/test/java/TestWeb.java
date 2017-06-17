@@ -1,3 +1,4 @@
+import dbmod.AeroportsTable;
 import dbmod.ReservTripTable;
 import dbmod.UsersTable;
 import org.junit.After;
@@ -6,16 +7,22 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TestWeb {
+
+    ArrayList cabarraycities;
+    ArrayList onlycities=new ArrayList();
+    ArrayList onlycities2=new ArrayList();
 
     @Before
     public void init(){
 
+
     }
 
     @Ignore
-    public void UAC(){
+    public void uac(){
         try {
             UsersTable ut=new UsersTable();
             System.out.println(ut.getAllUsersFromDB());
@@ -26,8 +33,8 @@ public class TestWeb {
         }
     }
 
-    @Test
-    public void TestOrders(){
+    @Ignore
+    public void testOrders(){
         try {
             ReservTripTable rtt=new ReservTripTable();
             System.out.println(rtt.getAllOrdersFromDB());
@@ -48,6 +55,25 @@ public class TestWeb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void View(){
+        try {
+            AeroportsTable at=new AeroportsTable();
+            cabarraycities=at.getAllAeroportsFromDB();
+            at.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        for(int i=0;i<cabarraycities.size();i++){
+
+            onlycities = (ArrayList)cabarraycities.get(i);
+            onlycities2.add(onlycities.get(1));
+
+        }
+        System.out.println(onlycities2);
     }
 
     @After

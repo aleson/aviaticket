@@ -38,6 +38,7 @@ public class Redirect extends HttpServlet{
             session.setAttribute("name",user.getFio());
             session.setAttribute("money",user.getMoney());
             session.setAttribute("role",user.getRole());
+            session.setAttribute("id_user",user.getId());
 
 
             session.setAttribute("sessionIdx", login);//main session create from login

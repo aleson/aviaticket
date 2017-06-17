@@ -98,12 +98,20 @@ public class FlightsTable extends DBconnect {
             f.setMinut(rs.getInt("ARRMINUTES"));
             f.setTime(rs.getInt("TIMEFLYINGMIN"));
             f.setDate(sdf.parse(rs.getString("BEGININGDAY")));
-
         }
         rs.close();
         return f;
     }
 
+    public int getIdFlightByCities(int idcitydepart,int idcityarrive) throws SQLException, ParseException {
+        //ResultSet rs = st.executeQuery("SELECT FLIGHT.ID FROM Tow.FLIGHT WHERE FLIGHT.CITYBEGIN="+"\""+depart+"\""+" AND FLIGHT.CITYEND="+"\""+arrive+"\"");
+        ResultSet rs = st.executeQuery("SELECT FLIGHT.ID FROM Tow.FLIGHT WHERE FLIGHT.CITYBEGIN="+idcitydepart+" AND FLIGHT.CITYEND="+idcityarrive);
+        while(rs.next())
+        {
+            return rs.getInt("ID");
+        }
+        return -1;
+    }
 
     //Add flight into database
     public void addFlight(String name,int citybegin, int cityend,float cost,String datbegin,

@@ -117,7 +117,7 @@
                         int cx2=0;//counter
                         int cl2=0;
                       %>
-                      <c:set var="array2" value="<%=list2%>"/><!--Variable for arr<User>-->
+                      <c:set var="array2" value="<%=list2%>"/>
                       <c:set var="cx2" value="<%=cx2%>"/>
                       <select multiple id="list2" size="10">
                         <c:forEach var="clip" items="${array2}" varStatus="сounter" >
