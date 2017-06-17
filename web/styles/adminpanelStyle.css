@@ -5,40 +5,27 @@ body{
     background-color: #0b4980;
     color: whitesmoke;
 }
-.formex{
-
-    border:2px double dodgerblue;
-    border-radius: 10px;
-    background-image:url(../resources/hosp_back3.jpg);
-    padding: 10px; /* Поля вокруг текста */
-    width:100px;
-    height: 60px;
-    background-color:#ffffff;
-    border-color: dodgerblue;
-    margin-top: 1%;
-    margin-left: -10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.9);
-    position: relative; z-index: 3;
-}
 
 .head{
     border:2px;
     -webkit-border-radius:10px;
     background-image:url(../resources/hosp_back1.jpg);
     padding: 10px; /* Поля вокруг текста */
-    width:900px;
+    width:1010px;
     height: 40px;
     background-color:#ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.9);
+    margin-top: -20px;
     position: relative; z-index: 2;
 }
 
 .body{
+
     color:black;
     padding: 10px; /* Поля вокруг текста */
     padding-top: 30px;
     width:960px;
-    height:550px;
+    height:590px;
     background-color: #f4fff8;
     margin-left: 25px;
     margin-top: -40px;
@@ -51,15 +38,14 @@ body{
 
 .bottom{
 
-<!--background-image:url(../resources/hosp_back1.jpg);-->
     border:2px;
     -webkit-border-radius:10px;
-    padding: 10px; /* Поля вокруг текста */
+    padding: 5px; /* Поля вокруг текста */
     width:1020px;
     height: 50px;
     background-color: #252447;
 
-    margin-top:auto;
+    margin-bottom: 1%;
     position: relative; z-index: 2;
 
 }
@@ -78,9 +64,16 @@ body{
     background-color:azure;
     border:2px double dodgerblue;
     -webkit-border-radius:10px;
-    margin-left: 0px;
-    margin-top: 10px;
+    margin-left: -5px;
+    margin-top: -18px;
     font-weight: bold;
+    position: relative; z-index: 3;
+}
+
+
+.text{
+    padding-top: 13px;
+    color:white;
 }
 
 .menubut{

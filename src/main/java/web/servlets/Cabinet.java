@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -44,9 +45,11 @@ public class Cabinet extends HttpServlet {
             tmp = (ArrayList)cabarraycities.get(i);
             onlycities.add(tmp.get(1));
         }
+        HttpSession session = req.getSession(true);
+        session.getAttribute("id_user");
+        cuid=Integer.parseInt(session.getAttribute("id_user").toString());
         User user=null;
         float money=0;
-        cuid=Integer.parseInt(req.getParameter("cuid"));
         try {
             UsersTable ut=new UsersTable();
             user=ut.getUserById(cuid);
@@ -85,7 +88,6 @@ public class Cabinet extends HttpServlet {
         String depart=req.getParameter("depart");//city depart
         String arrive=req.getParameter("arrive");//city arrive
         String butcab=req.getParameter("create_order");//create orders
-        cuid=Integer.parseInt(req.getParameter("cuid"));
 
         String str=depart;
         for(int i=0; i<2;i++){
@@ -105,6 +107,10 @@ public class Cabinet extends HttpServlet {
             array[0]=array[1];
             array[1]=temp;
         }
+
+        HttpSession session = req.getSession(true);
+        session.getAttribute("id_user");
+        cuid=Integer.parseInt(session.getAttribute("id_user").toString());
 
         User user=null;
         float money=0;

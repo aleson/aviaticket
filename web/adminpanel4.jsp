@@ -9,6 +9,7 @@
   if(session.getAttribute("role")!=null){
     if(!session.getAttribute("role").equals(2)) response.sendRedirect("index.jsp");
   }
+
 %>
 
 
@@ -16,7 +17,7 @@
 <head>
   <title>Admin panel</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="../styles/adminStyle.css">
+  <link rel="stylesheet" type="text/css" href="../styles/adminpanelStyle.css">
 </head>
 <body>
 
@@ -27,18 +28,22 @@
         <td>
           <div name="moduleheader" class="head">
                     <span>
-                        <table border="0" width="900">
+                        <table border="0" width="1000">
                           <td width="200">
                             <h3><%=session.getAttribute("name")%></h3>
                           </td>
-                          <td width="200">
+                          <td width="700">
                             <h3>Balance: <%=session.getAttribute("money")%> RUR</h3>
                           </td>
-                          <td width="300"></td>
-                          <td width="60" align="center">
+                          <td>
                             <h1><%=((session.getAttribute("role")==null)?"": session.getAttribute("role").equals(2) ? "<h1>Admin   </h1>" : "<h1></h1>" )%></h1>
                           </td>
+                          <td width="100"></td>
+                          <td width="60" align="center">
+                            <a href="logout.jsp"><input type="submit" class="exit" value="Выйти" /></td></a>
+                          </td>
                         </table>
+
 
                     </span>
                     <span>
@@ -46,13 +51,6 @@
 
           </div>
         </td><td>
-        <div name="moduleex" class="formex">
-
-                    <span>
-                        <a href="logout.jsp"><input type="submit" class="exit" value="Выйти"/></a>
-                    </span>
-
-        </div>
       </td>
       </table>
     </td>
@@ -61,7 +59,9 @@
     <td>
 
 
-      <div name="modulbody" class="body">
+
+
+    <div name="modulbody" class="body">
         <form id="modbod" method="POST">
 
           <table border="0" width="960" height="520">

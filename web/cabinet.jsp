@@ -71,8 +71,7 @@
                         </td></tr>
                             <tr><td>
                                 <form action="/cabinet" method="Post">
-                                    <span><input type="text" id="ccna" name="ccna" class="butafor" value="33" size="0" /></span>
-                                   <span><input type = "button" class="menubut" value = "Не работает"/></span>
+                                   <a href="/cabinet"><input type = "button" class="menubut" value = "Обновить"/></a>
                                 </form>
                             </td></tr>
                             <tr><td>
@@ -120,11 +119,6 @@
                                     </td></table>
                                     </td></tr>
                                     <form action="/cabinet" method="post"><tr><td>
-                                        <%
-                                            int cuid=Integer.parseInt(session.getAttribute("id_user").toString());//get id user
-                                        %>
-                                        <c:set var="cuid" value="<%=cuid%>"/>
-                                        <input type="text" id="cuid" name="cuid" class="butafor" value="${cuid}" size="0" />
 
                                         <table height="30"><td>
                                                 <span><input type="text" id="depart" name="depart" class="client" value="" size="10" /></span>
