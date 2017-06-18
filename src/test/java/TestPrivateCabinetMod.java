@@ -67,20 +67,20 @@ public class TestPrivateCabinetMod {
         System.out.println(path.getPathlist());
     }
 
-    @Ignore /*<!---->*/
+    @Ignore
     public void testCabinet() throws SQLException {
         UsersTable ut=new UsersTable();
         User user=ut.getUserById(1);
         ut.closeConnection();
         PrivateCabinet privateCabinet =new PrivateCabinet(user);
         System.out.println(privateCabinet.createOptimalTimeOrder(1,5));
-        System.out.println(privateCabinet.viewUsersOrders());
+
     }
     @Ignore
     public void testStandardOrderCabinet(User user){
         PrivateCabinet privateCabinet = new PrivateCabinet(user);
         System.out.println(privateCabinet.createStandartOrder(3));
-        System.out.println(privateCabinet.viewUsersOrders());
+
     }
 
 

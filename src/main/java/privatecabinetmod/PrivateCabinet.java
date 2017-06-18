@@ -6,6 +6,7 @@ import dbmod.UsersTable;
 import usermod.User;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 //This class is a class for controlling the actions of a particular user.
@@ -61,65 +62,80 @@ public class PrivateCabinet {
     //next methods need for create optimal orders
     public boolean createOptimalTimeOrder(int startCity,int endCity)
     {
-        path.buildTimePath(startCity,endCity);
-        return createOptimalOrder();
+        List arraypath=null;
+        Path path=new Path();
+        arraypath=path.buildTimePath(startCity,endCity);//get list between cities
+        int cfid=-1;
+            for (int i = 0; i < arraypath.size()-1; i++) {
+                try {
+                    FlightsTable ft = new FlightsTable();
+                    int t1=Integer.parseInt(arraypath.get(i).toString());
+                    int t2=Integer.parseInt(arraypath.get(i+1).toString());
+                    if(t1>t2){
+                        int imp=t1;
+                        t1=t2;
+                        t2=imp;
+                    }
+                    cfid=ft.getIdFlightByCities(t1, t2);
+                    ft.closeConnection();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if(cfid!=-1){
+                    if(createStandartOrder(cfid)==false)
+                    {
+                        return false;
+                    }
+                }else return false;
+
+            }
+
+        return true;
     }
     public boolean createOptimalCostOrder(int startCity,int endCity)
     {
-        path.buildCostPath(startCity,endCity);
-        return createOptimalOrder();
-    }
-    //algorithm for create optimal order
-    private boolean createOptimalOrder(){
-        path.getPathlist();
-        float money=user.getMoney(); //local variable
-        int countFlight=0;
-                for(int i=0;i<path.getPathlist().size();i++)
-                {
-                    //validate each flight at path
-                    if(Validate.isPay(user, path.getPathlist().get(i)) && money>=path.getPathlist().get(i).getCost())
-                    {
-                        money=money-path.getPathlist().get(i).getCost();
-                        countFlight++;
-                    }
-                }
-        if(countFlight==path.getPathlist().size()){
-
+        List arraypath=null;
+        Path path=new Path();
+        arraypath=path.buildCostPath(startCity, endCity);//get list between cities
+        int cfid=-1;
+        for (int i = 0; i < arraypath.size()-1; i++) {
             try {
-                for(int i=0;i<path.getPathlist().size();i++)
-                {
-                    ReservTripTable rtt = new ReservTripTable();
-                    rtt.addOrder(user.getId(),path.getPathlist().get(i).getId());
-                    rtt.closeConnection();
+                FlightsTable ft = new FlightsTable();
+                int t1=Integer.parseInt(arraypath.get(i).toString());
+                int t2=Integer.parseInt(arraypath.get(i+1).toString());
+                if(t1>t2){
+                    int imp=t1;
+                    t1=t2;
+                    t2=imp;
                 }
-            } catch (Exception e) {
+                cfid=ft.getIdFlightByCities(Integer.parseInt(arraypath.get(i).toString()), Integer.parseInt(arraypath.get(i + 1).toString()));
+                ft.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }catch (ParseException e) {
                 e.printStackTrace();
             }
-
-            return true;
-        }
-        else return false;
-    }
-
-    //this method return all user's orders
-    public List viewUsersOrders(){
-        try {
-            ReservTripTable rtt= new ReservTripTable();
-            ArrayList array=rtt.getAllOrdersFromDB();
-            for(int i=0;i<array.size();i++)
-            {
-                ArrayList underArray=(ArrayList)array.get(i);
-                if(underArray.get(1)==user.getId()){
-                    arrayOrders.add((ArrayList)array.get(i));
+            if(cfid!=-1){
+                if(createStandartOrder(cfid)==false)
+                {
+                    return false;
                 }
-            }
-            rtt.closeConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
+            }else return false;
+
         }
-        return arrayOrders;
+
+        return true;
     }
 
+    public List<Integer> GetOptimalTimePath(int startCity,int endCity){
+        return path.buildTimePath(startCity, endCity);
+    }
+
+    public List<Integer> GetOptimalCostPath(int startCity,int endCity){
+        return path.buildCostPath(startCity, endCity);
+    }
 
 
 }

@@ -37,7 +37,7 @@
                     <input type="text" id="cumoney" name="cumoney" class="butafor" value="${cumoney}" size="0" />
 
                     <span>
-                        <table border="0" width="1020">
+                        <table border="0" width="1000">
                             <td width="200">
                                 <h3><%=(request.getAttribute("xcuname")!=null)?request.getAttribute("xcuname"):cuname%></h3>
                             </td>
@@ -65,7 +65,7 @@
         <form name="modulbody" id="modbod" class="body">
             <span></span>
             <table border="0" width="960" height="520">
-                    <td width="160">
+                    <td width="120">
                         <table border="0"><tr><td>
                             <p align="center"><h3><font color="black">Меню:</font></h3></p>
                         </td></tr>
@@ -73,42 +73,17 @@
                                 <form action="/cabinet" method="Post">
                                    <a href="/cabinet"><input type = "button" class="menubut" value = "Обновить"/></a>
                                 </form>
-                            </td></tr>
-                            <tr><td>
-                                <p align="center"><h3><font color="black">Города:</font></h3></p>
-                            </td></tr>
-                            <tr><td>
-                                <form  action="/airadmin" method="POST">
-                                    <a href="/airadmin" methods="POST"><input type = "button" class="menubut" value = "Перейти"/></a>
-                                </form>
-                            </td></tr>
-                            <tr><td>
-                                <p align="center"><h3><font color="black">Рейсы:</font></h3></p>
-                            </td></tr>
-                            <tr><td>
-                                <form  action="/airflights" method="POST">
-                                    <a href="/airflights" methods="POST"><input type = "button" class="menubut" value = "Перейти"/></a>
-                                </form>
-                            </td></tr>
-                            <tr><td>
-                                <p align="center"><h3><font color="black">Заказы:</font></h3></p>
-                            </td></tr>
-                            <tr><td>
-                                <form  action="/adminorders" method="POST">
-                                    <a href="/adminorders" methods="POST">
-                                        <input type = "button" class="menubut" value = "Перейти"/></a>
-                                </form>
-                            </td></tr>
-                            <tr><td height="145"></td></tr>
+
+                            <tr><td height="445"></td></tr>
                         </table>
 
                     </td>
                 <td width="800">
-                    <table width="800" border="1">
+                    <table width="800" border="0">
                         <tr>
                             <td height="360">
 
-                                <table border="1">
+                                <table border="0">
                                     <tr><td>
                                         <table><td>
                                         <font color="black">Город вылета</font>
@@ -133,7 +108,7 @@
                                             <span>
                                                 <input id="create_order" name="create_order" type="submit" class="redact" value="заказать"/>
                                             </span>
-                                    </td></tr></form>
+                                    </td></tr><!--->
                                     <tr><td>
 
                                         <table><td>
@@ -141,13 +116,15 @@
                                             <%
 
                                                 List listcities =(List)request.getAttribute("cabarraycities");
+                                                List listorders=(List)request.getAttribute("cabarrayorders");
                                                 int cabcx=0;//counter
                                                 int cabcx2=0;
-
                                                 int cabcr=0;
                                             %>
                                              <c:set var="cabarray" value="<%=listcities%>"/>
                                              <c:set var="cabarray2" value="<%=listcities%>"/>
+                                            <c:set var="cabarrayorders" value="<%=listorders%>"/>
+                                            <c:set var="cabcx2" value="<%=cabcx2%>"/>
                                             <c:set var="cabcx" value="<%=cabcx%>"/>
                                            <select id="list1" multiple size="10">
                                                 <c:forEach var="clip" items="${cabarray}" varStatus="сounter" >
@@ -166,7 +143,45 @@
                                             <c:set var="cabx" value="0"/>
 
                                         </td></table>
-                                    </td></tr>
+                                    </td>
+                                    <td>
+                                    <table><tr><td>
+                                        <span>
+                                                <input id="create_optimal_time" name="create_optimal_time" type="submit" class="redact" value="выбрать оптимальный по времени"/>
+                                            </span>
+                                    </td></tr><tr><td>
+                                           <span>
+                                                <input id="create_optimal_cost" name="create_optimal_cost" type="submit" class="redact" value="выбрать оптимальный по цене"/>
+                                            </span>
+                                    </td></tr><tr><td>
+
+                                        <font color="black">Предлагаемый оптимальный путь по времени:</font>
+
+                                    </td></tr><tr><td>
+
+                                        <span><input type="text" id="path" name="path" class="client" value="<%=(request.getAttribute("path")!=null) ?request.getAttribute("path") :""%>" size="10" /></span>
+
+                                    </td></tr><tr><td>
+
+                                    </td></tr><tr><td>
+
+                                        <font color="black">Предлагаемый оптимальный путь по цене:</font>
+
+                                    </td></tr><tr><td>
+
+                                        <span><input type="text" id="path2" name="path2" class="client" value="<%=(request.getAttribute("path2")!=null) ?request.getAttribute("path2") :""%>" size="10" /></span>
+
+                                    </td></tr><tr><td>
+
+                                        <span>
+                                                <input id="create_optimal_order" name="create_optimal_order" type="submit" class="redact" value="Получить оптимальный вариант"/>
+                                            </span>
+
+                                    </td></tr></table>
+
+
+                                    </td>
+                                    </tr>
                                     <tr><td><h3><font color="black">
                                         <%
                                             String string=null;
@@ -177,16 +192,36 @@
                                             }
                                         %>
                                         <%=(string!=null)?string:""%>
-                                    </font></h3></td></tr>
-                                </table>
+                                    </font></h3></td>
+                                    <td>
 
+
+                                </td>
+                                    </tr>
+                                    </form></table>
+                            <td width="450">
+                        <table><tr><td>
+                            <font color="black">Ваши оформленные заказы</font>
+                        </td></tr><tr><td>
+
+
+                            <select id="listorders" multiple size="10">
+                                <c:forEach var="clip" items="${cabarrayorders}" varStatus="сounter" >
+                                    <option value="${cabcx2}"><font color="BLACK">${clip}</font></option>
+                                </c:forEach>
+                            </select>
+
+                        </td></tr></table>
+
+                        </td>
                             </td>
                         </tr>
                         <tr>
-                            <td height="180">
+                            <td height="180"> Здесь время
                             </td>
-
+                            <td></td>
                         </tr>
+
                     </table>
                 </td>
             </table>
