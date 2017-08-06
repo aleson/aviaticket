@@ -4,7 +4,9 @@ import org.junit.Test;
 import usermod.User;
 
 public class TestValidate {
+
     private  User user;
+
     @Before
     public void init(){
         user=new User();
@@ -24,7 +26,6 @@ public class TestValidate {
         user.setLogin("Aerdghs_98");//true
         System.out.println(user.getLogin());
     }
-
 
     @After
     public void flush(){

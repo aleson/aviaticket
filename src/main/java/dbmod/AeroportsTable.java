@@ -8,37 +8,29 @@ import java.util.Vector;
 
 
 public class AeroportsTable extends DBconnect {
-    public AeroportsTable() throws SQLException {
-
-    }
+    public AeroportsTable() throws SQLException {}
 
     private String city;
     private String id;
-
 
     //Select all airports
     public ArrayList getAllAeroportsFromDB() throws SQLException
     {
         //Variable-list
         ArrayList res = new ArrayList();
-
         String query = SELECT_ALL_AEROPORTS;
         //Running query
         ResultSet resultSet2 = st.executeQuery(query);
-        //ResultSet resultSet2 = pst.executeQuery(query);
 
         while(resultSet2.next())
         {
             //Create new List-variable
             ArrayList element = new ArrayList();
-
             id = resultSet2.getString("ID"); //1-Since an SQLException: "Fail to convert to internal representation" appears
             city=resultSet2.getString("CITY"); //2-then id have type String
             // Добавляем по порядку
             element.add(id);
             element.add(city);
-
-
             //Add list to result
             res.add(element);
         }
@@ -58,6 +50,7 @@ public class AeroportsTable extends DBconnect {
         ps.executeUpdate();
         ps.close();
     }
+
     //Delete airport from database by his id
     public void deleteAeroportByID(int ids) throws SQLException{
         PreparedStatement ps = conn.prepareStatement("DELETE FROM AEROPORTS WHERE AEROPORTS.ID=?");
@@ -74,5 +67,4 @@ public class AeroportsTable extends DBconnect {
         ps.executeUpdate();
         ps.close();
     }
-
 }

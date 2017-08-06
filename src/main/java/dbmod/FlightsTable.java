@@ -12,17 +12,13 @@ import java.util.Date;
 
 public class FlightsTable extends DBconnect {
 
-    public FlightsTable() throws SQLException {
-    }
+    public FlightsTable() throws SQLException {}
 
     private String name;
     private Integer id,citybegid,cityendid,timeflight;
     private float cost;
     private Date date=new Date();
-
     protected int size=0;
-
-
     private int arrhours,arrminutes;
 
     public String setDate(String str) throws ParseException {
@@ -35,19 +31,14 @@ public class FlightsTable extends DBconnect {
 
         //Variable with result
         ArrayList res = new ArrayList();
-
         String query = SELECT_ALL_FLIGHTS;
         // Create query
         ResultSet resultSet = st.executeQuery(query);
 
-
         while(resultSet.next())
         {
-
             ArrayList element = new ArrayList();
-
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-
             id = resultSet.getInt("ID");//5
             citybegid=resultSet.getInt("CITYBEGIN");//2
             cityendid=resultSet.getInt("CITYEND");//3
@@ -57,8 +48,6 @@ public class FlightsTable extends DBconnect {
             arrhours= resultSet.getInt("ARRHOURS");//7
             arrminutes= resultSet.getInt("ARRMINUTES");//9
             timeflight=resultSet.getInt("TIMEFLYINGMIN");//8-set flight time (minutes)
-
-
             //Add data to variable
             element.add(id);
             element.add(name);
@@ -72,14 +61,11 @@ public class FlightsTable extends DBconnect {
             size++;
             //Add list to result
             res.add(element);
-
         }
         //flush resources
         resultSet.close();
-
         return res;
     }
-
 
     //Select flight into database by his id
     public Flight getFlightById(int ids) throws SQLException, ParseException {
@@ -88,7 +74,6 @@ public class FlightsTable extends DBconnect {
         while(rs.next())
         {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-
             f.setName(rs.getString("NAME"));
             f.setId(rs.getInt("ID"));
             f.setCost(rs.getFloat("COST"));

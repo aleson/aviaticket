@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 //this class work with servlet. When class find user he send User to servlet
 public class Autentification {
+
     public UsersTable utt;
     private User user;
     private boolean exist;
@@ -30,7 +31,6 @@ public class Autentification {
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new IllegalArgumentException("Get user by id exception");
-
             }
         return null;
     }

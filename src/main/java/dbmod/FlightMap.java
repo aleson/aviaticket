@@ -16,12 +16,9 @@ public class FlightMap {
     protected List<Integer> arrayCityBegin=new ArrayList<Integer>();// array need for building flight-paths between cities
     protected List<Integer> arrayCityEnd=new ArrayList<Integer>();// array need for building flight-paths between cities
     protected List<Integer> arrayId =new ArrayList<Integer>(); //array need for class Path
-
     protected int N;//size to navigation array NxN
 
-    protected FlightMap() {
-
-    }
+    protected FlightMap() {}
 
     protected int[][] getCreateNavigationArray(){
         try {

@@ -22,7 +22,7 @@ body{
 .body{
 
     color:black;
-    padding: 10px; /* Поля вокруг текста */
+    padding: 10px;
     padding-top: 30px;
     width:960px;
     height:590px;
@@ -40,7 +40,7 @@ body{
 
     border:2px;
     -webkit-border-radius:10px;
-    padding: 5px; /* Поля вокруг текста */
+    padding: 5px;
     width:1020px;
     height: 50px;
     background-color: #252447;

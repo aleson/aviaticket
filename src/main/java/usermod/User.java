@@ -18,7 +18,6 @@ public class User implements Userable {
 
     public void setRole(Integer role)
     {
-
         if(role<1) throw new IllegalArgumentException("Illegal argument in user role");
         this.role = role;
     }

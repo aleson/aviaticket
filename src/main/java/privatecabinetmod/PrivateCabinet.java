@@ -16,7 +16,6 @@ public class PrivateCabinet {
     private Order order;
     private Flight flight;
     protected Path path=new Path();
-
     private List<ArrayList> arrayOrders=new ArrayList<ArrayList>();//all user's orders
 
     public List<ArrayList> getArrayOrders() {
@@ -30,13 +29,12 @@ public class PrivateCabinet {
 
     //By pressing button for create order(to issue tickets)
     public boolean createStandartOrder(int idFlight){
-
         try {
             FlightsTable ft = new FlightsTable();
             flight=ft.getFlightById(idFlight);
             ft.closeConnection();
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         finally {
@@ -46,12 +44,11 @@ public class PrivateCabinet {
                    ReservTripTable rtt= new ReservTripTable(); //add order on user
                    rtt.addOrder(user.getId(), flight.getId()); //create Order in database
                    rtt.closeConnection();
-
                    UsersTable ut=new UsersTable(); //refresh user
                    ut.editUser(user.getId(),user.getFio(),user.getMoney()-flight.getCost(),user.getLogin(),user.getPass(),user.getRole());
-
                    return true;
-               } catch (Exception e) {
+               }
+               catch (Exception e) {
                    e.printStackTrace();
                    return false;
                }
@@ -59,6 +56,7 @@ public class PrivateCabinet {
            else return false;
         }
     }
+
     //next methods need for create optimal orders
     public boolean createOptimalTimeOrder(int startCity,int endCity)
     {
@@ -84,16 +82,15 @@ public class PrivateCabinet {
                     e.printStackTrace();
                 }
                 if(cfid!=-1){
-                    if(createStandartOrder(cfid)==false)
+                    if(!createStandartOrder(cfid))
                     {
                         return false;
                     }
                 }else return false;
-
             }
-
         return true;
     }
+
     public boolean createOptimalCostOrder(int startCity,int endCity)
     {
         List arraypath=null;
@@ -118,14 +115,12 @@ public class PrivateCabinet {
                 e.printStackTrace();
             }
             if(cfid!=-1){
-                if(createStandartOrder(cfid)==false)
+                if(!createStandartOrder(cfid))
                 {
                     return false;
                 }
             }else return false;
-
         }
-
         return true;
     }
 
@@ -136,6 +131,4 @@ public class PrivateCabinet {
     public List<Integer> GetOptimalCostPath(int startCity,int endCity){
         return path.buildCostPath(startCity, endCity);
     }
-
-
 }

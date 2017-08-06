@@ -3,6 +3,7 @@ body{
     background-color: beige;
     color:black;
 }
+
 form{
     border:2px double;
     border-radius: 10px;
@@ -32,8 +33,8 @@ form{
     border-radius:5px;
     font-weight: bold;
     font-size: 16px;
-
 }
+
 .name {
     width: 150px;
     padding:6px 3px 6px 3px;
@@ -43,7 +44,6 @@ form{
     border-radius:5px;
     font-weight: bold;
     font-size: 16px;
-
 }
 
 .user {
@@ -83,7 +83,6 @@ form{
 
 
 .entery{
-
     width: 160px;
     height: 34px;
     font-size: 16px;
@@ -102,7 +101,6 @@ form{
 
 .Bottom{
     color: whitesmoke;
-
     position: absolute;
     left: 0;
     bottom: 0;

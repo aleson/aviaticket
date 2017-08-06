@@ -13,9 +13,7 @@ import java.io.IOException;
 
 public class Redirect extends HttpServlet{
 
-
     private static int count=0;//counter requests for page
-
     private static String password;
     private static String login;
     private static boolean isError;
@@ -31,26 +29,26 @@ public class Redirect extends HttpServlet{
             User user = aut.findUser(login, password);
         //data transport
         if(user!=null){
-        if(user.getLogin().equals(login) && user.getPass().equals(password)) {
-            HttpSession session = req.getSession(true);
+            if(user.getLogin().equals(login) && user.getPass().equals(password)) {
+                HttpSession session = req.getSession(true);
 
-            session.setAttribute("current_count", count);
-            session.setAttribute("name",user.getFio());
-            session.setAttribute("money",user.getMoney());
-            session.setAttribute("role",user.getRole());
-            session.setAttribute("id_user",user.getId());
+                session.setAttribute("current_count", count);
+                session.setAttribute("name",user.getFio());
+                session.setAttribute("money",user.getMoney());
+                session.setAttribute("role",user.getRole());
+                session.setAttribute("id_user",user.getId());
 
 
-            session.setAttribute("sessionIdx", login);//main session create from login
-            session.setMaxInactiveInterval(5*60);//5 minutes
-            isError=false;
-            req.getRequestDispatcher("under.jsp").forward(req, resp);
-        }
-        else{
-            isError=true;
-            req.setAttribute("isError",isError);
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-        }
+                session.setAttribute("sessionIdx", login);//main session create from login
+                session.setMaxInactiveInterval(5*60);//5 minutes
+                isError=false;
+                req.getRequestDispatcher("under.jsp").forward(req, resp);
+            }
+            else{
+                isError=true;
+                req.setAttribute("isError",isError);
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+            }
         }
         else{
             isError=true;
@@ -58,7 +56,4 @@ public class Redirect extends HttpServlet{
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
-
-
-
 }

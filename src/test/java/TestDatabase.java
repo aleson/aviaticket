@@ -23,9 +23,7 @@ public class TestDatabase {
         UsersTable con =new UsersTable();
         System.out.println(con.getAllUsersFromDB());
         con.closeConnection();
-
         System.out.println("-----");
-
         UsersTable table=new UsersTable();
         User obj=new User();
         obj.setFio("Ibragim Rudolfovich");
@@ -35,7 +33,6 @@ public class TestDatabase {
         obj.setRole(1);
         table.addUser(obj);
         table.closeConnection();
-
         obj.info();
         UsersTable test=new UsersTable();
         test.deleteUserByID(4);
@@ -52,8 +49,8 @@ public class TestDatabase {
         UsersTable tab3=new UsersTable();
         System.out.println(tab3.getAllUsersFromDB());
         table.closeConnection();
-
     }
+
     @Ignore
     public void TestAeroportsTable() throws Exception{
         AeroportsTable con =new AeroportsTable();
@@ -65,16 +62,14 @@ public class TestDatabase {
         con2.closeConnection();
         AeroportsTable con3=new AeroportsTable();
         con3.deleteAeroportByID(6);
-
         System.out.println(con3.getAllAeroportsFromDB());
         con3.closeConnection();
         AeroportsTable con4=new AeroportsTable();
         con4.editAeroport(5,"Minsk");
         System.out.println(con4.getAllAeroportsFromDB());
         con4.closeConnection();
-
-
     }
+
     @Ignore
     public void TestForRole() throws Exception{
         UsersTable con2 =new UsersTable();
@@ -82,8 +77,8 @@ public class TestDatabase {
         con2.closeConnection();
         u.info();
         System.out.println(u.getRole());
-
     }
+
     @Ignore
     public void TestReservTripTable() throws Exception{
         ReservTripTable rtt=new ReservTripTable();
@@ -99,29 +94,23 @@ public class TestDatabase {
         System.out.println(rtt4.getAllOrdersFromDB());
         rtt4.closeConnection();
     }
+
     @Ignore
     public void TestFlightsTable() throws Exception{
         FlightsTable flightsTable=new FlightsTable();
         System.out.println(flightsTable.getAllFlightsFromDB());
         flightsTable.closeConnection();
-
         FlightsTable ft1=new FlightsTable();
         ft1.addFlight("AIRBUS",1,2,170000,ft1.setDate("11-02-2001"),20,48,900);
         ft1.closeConnection();
-
         FlightsTable flightsTable2=new FlightsTable();
         System.out.println(flightsTable2.getAllFlightsFromDB());
         flightsTable2.closeConnection();
-
         FlightsTable ft2=new FlightsTable();
         ft2.deleteFlightByID(8);
         ft2.closeConnection();
-
         FlightsTable flightsTable3=new FlightsTable();
         System.out.println(flightsTable3.getAllFlightsFromDB());
         flightsTable3.closeConnection();
-
     }
-
-
 }

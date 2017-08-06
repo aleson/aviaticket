@@ -97,6 +97,4 @@ public class Flight {
                 ", time=" + time +
                 '}';
     }
-
-
 }

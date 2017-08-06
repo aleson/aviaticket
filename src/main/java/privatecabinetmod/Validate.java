@@ -11,7 +11,4 @@ public class Validate {
     }
 
     private Validate(){}//that we always used one or few of them methods
-
-
-
 }

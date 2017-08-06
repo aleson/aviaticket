@@ -1,5 +1,3 @@
 package usermod;
 
-interface Userable{
- void info();
-}
+interface Userable{ void info(); }

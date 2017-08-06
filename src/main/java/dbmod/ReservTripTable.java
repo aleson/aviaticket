@@ -15,9 +15,9 @@ public class ReservTripTable extends DBconnect{
     private int  valflt;
     private UsersTable ut =new UsersTable();
     private FlightsTable ft=new FlightsTable();
+    private int id,idflights,idusers;
 
     public ReservTripTable() throws SQLException {
-
         valuser=ut.getAllUsersFromDB().size();
         try {
             valflt=ft.getAllFlightsFromDB().size();
@@ -26,14 +26,11 @@ public class ReservTripTable extends DBconnect{
         }
     }
 
-    private int id,idflights,idusers;
-
     //from DB select all trip-orders
     public ArrayList getAllOrdersFromDB() throws SQLException
     {
         //Variable with result
         ArrayList res = new ArrayList();
-
         String query = SELECT_ALL_RESERVETRIPS;
         // Create query
         ResultSet resultSet = st.executeQuery(query);
@@ -41,7 +38,6 @@ public class ReservTripTable extends DBconnect{
         while(resultSet.next())
         {
             ArrayList element = new ArrayList();
-
             id = resultSet.getInt("ID");//2
             idflights=resultSet.getInt("IDFLIGHT");//1
             idusers=resultSet.getInt("IDUSER");//3
@@ -80,9 +76,8 @@ public class ReservTripTable extends DBconnect{
             ps.setInt(3, userId);
             ps.executeUpdate();
             ps.close();
-
-
     }
+
     //Delete trip-order from database
     public void deleteOrderByID(int ids) throws SQLException{
         PreparedStatement ps = conn.prepareStatement("DELETE FROM RESERVTRIP WHERE RESERVTRIP.ID=?");
@@ -90,6 +85,4 @@ public class ReservTripTable extends DBconnect{
         ps.executeUpdate();
         ps.close();
     }
-
-
 }

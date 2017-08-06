@@ -20,6 +20,7 @@ public class DBconnect {
         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", username, password);//authorisation
         st = conn.createStatement();//install connection
     }
+
     //send command to db - universal procedure
     public void command(String command) throws SQLException{
         st.executeUpdate(command);
@@ -40,9 +41,8 @@ public class DBconnect {
     String SELECT_ALL_AEROPORTS="SELECT * FROM Tow.AEROPORTS";
     String SELECT_ALL_FLIGHTS="SELECT * FROM Tow.FLIGHT";
     String SELECT_ALL_RESERVETRIPS="SELECT * FROM Tow.RESERVTRIP";
-
-
     protected int count;//counter existing entry's
+
     //tool to calculate maximal existing id in database:
     protected int getMaxId(String query) throws SQLException
     {
@@ -53,7 +53,4 @@ public class DBconnect {
         resultSet.close();
         return count;
     }
-
-
-
 }

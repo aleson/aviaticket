@@ -5,7 +5,9 @@ import org.junit.Test;
 import usermod.User;
 
 public class TestDefMod {
+
     private User user;
+
     @Before
     public void init(){
         user=new User();
@@ -14,10 +16,8 @@ public class TestDefMod {
     @Test
     public void findUser(){
         Autentification aut=new Autentification();
-        //System.out.println(aut.findUser("Ibrom","1234").getFio());
-
+        System.out.println(aut.findUser("Venum","1234").getFio());
     }
-
 
     @After
     public void flush(){

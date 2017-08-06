@@ -42,5 +42,4 @@ public class Order {
                 ", iduser=" + iduser +
                 '}';
     }
-
 }

@@ -8,14 +8,11 @@ public class DijkstrasAlg {
     private int numStartVer;//start versh number
     private int numEndVer;//end versh number
     private static final long INF = Long.MAX_VALUE / 10; //infinity
-
-
     private int arr[][]=new int[100][100];
-    public void dijkstra(Graph g, int numStartVer, long[] prio, int[] pred) {
 
-            numStartVer = 0;
-            numEndVer=5;
-//begin algorithm ---------------------------------------------------------------
+    public void dijkstra(Graph g, int numStartVer, long[] prio, int[] pred) {
+        numStartVer = 0;
+        numEndVer=5;
         Arrays.fill(pred, -1);
         Arrays.fill(prio, INF);
         prio[numStartVer] = 0;
@@ -26,7 +23,6 @@ public class DijkstrasAlg {
             if (cur.prio != prio[cur.v]) {
                 continue;
             }
-
             for (Edge e : g.nodeEdges[cur.v]) {
                 long nprio = prio[cur.v] + e.cost;
                 if (prio[e.t] > nprio) {
@@ -46,8 +42,6 @@ public class DijkstrasAlg {
             this.prio = prio;
             this.v = v;
         }
-
-
         public int compareTo(QItem q) {
             return prio < q.prio ? -1 : prio > q.prio ? 1 : 0;
         }
@@ -61,7 +55,6 @@ public class DijkstrasAlg {
             this.t = t;
             this.cost = cost;
         }
-
     }
 
     public class Graph {
@@ -75,15 +68,10 @@ public class DijkstrasAlg {
                 nodeEdges[i] = new ArrayList<Edge>();
             }
         }
-
         void addEdge(int s, int t, int cost) {
             nodeEdges[s].add(new Edge(s, t, cost));
         }
     }
-
-//  end algorithm ---------------------------------------------------------------
-
-    // <!---------------------------- EDIT ------------------------------------->
 
     //this method is start algorithm(get matrix) and return Versh's list (path)
     public List<Integer> run(int[][] arr,int numStartVer,int numEndVer) {
@@ -111,8 +99,6 @@ public class DijkstrasAlg {
         long[] path = new long[g.n];
         int[] pred = new int[g.n];
         dijkstra(g, numStartVer, path, pred);
-        //System.out.println("Shortest path: "+path[g.n-1]);
-
         return printPath(pred, numEndVer);
     }
 
@@ -132,24 +118,16 @@ public class DijkstrasAlg {
         for(int i=0;i<charstr.length;i++)
         {
             if(i==0) list.add(numStartVer+1);
-            else
-            {
-                list.add(Integer.parseInt(String.valueOf(charstr[i])));
-            }
+            else list.add(Integer.parseInt(String.valueOf(charstr[i])));
         }
-
-
         return list;
     }
 
     //Balance-matrix mechanism for simplification algorithm
     public int[][] balanceMatrix(int[][] matrix,int beginVer, int changedVer){
-
         if(beginVer==changedVer) return matrix;//for time economy
-
         int[][] arr=matrix;//copy of matrix
         int tmp;//temporary variable
-
         for(int i=0;i<arr.length  ;i++){
             if(changedVer!=0 && beginVer!=0) {
                 tmp = arr[i][beginVer - 1];
@@ -158,7 +136,6 @@ public class DijkstrasAlg {
             }
         }
         for(int j=0;j<arr.length;j++){
-
             if(changedVer!=0 && beginVer!=0) {
                 tmp = arr[beginVer - 1][j];
                 arr[beginVer - 1][j] = arr[changedVer - 1][j];
@@ -167,6 +144,4 @@ public class DijkstrasAlg {
         }
         return arr;
     }
-
-
 }

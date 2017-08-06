@@ -21,9 +21,6 @@ import java.util.List;
 
 public class Cabinet extends HttpServlet {
 
-
-
-
     private int array[]=new int[2];//for cities
     private int cuid;//id user
     private int cfid;//id flight
@@ -212,10 +209,6 @@ public class Cabinet extends HttpServlet {
         //--------------------------------------------------------------------------------------------------------------
 
 
-
-        //array[0]=0;// not "FOR" - for faster speed
-        //array[1]=0;
-
         req.setAttribute("caberror",isError);
         req.getRequestDispatcher("cabinet.jsp").forward(req, resp);
     }
@@ -284,5 +277,4 @@ public class Cabinet extends HttpServlet {
 
         //--------------------------------------------------------------------------------------------------------------
     }
-
 }

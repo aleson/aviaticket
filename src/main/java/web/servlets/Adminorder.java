@@ -19,16 +19,15 @@ public class Adminorder extends HttpServlet {
     private int flightid;
     private int userid;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
         try {
             ReservTripTable rtt=new ReservTripTable();
             arrayorders=rtt.getAllOrdersFromDB();
             rtt.closeConnection();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         req.setAttribute("list_size4",arrayorders.size());
@@ -39,11 +38,6 @@ public class Adminorder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
-        //====================to orders===========================================
-        //========================================================================
-        //========================================================================
-
         String str4=req.getParameter("x4");
         String but14=req.getParameter("addorder");
         String but34=req.getParameter("delorder");
@@ -54,12 +48,12 @@ public class Adminorder extends HttpServlet {
             ReservTripTable rtt=new ReservTripTable();
             arrayorders=rtt.getAllOrdersFromDB();
             rtt.closeConnection();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         req.setAttribute("list_size4",arrayorders.size());
         req.setAttribute("arrayorders",arrayorders);
-
         if(str4!=null) {
             if (but34 != null) { //delete orders
                 try {
@@ -72,12 +66,10 @@ public class Adminorder extends HttpServlet {
                 }
             }
         }
-
         if(req.getParameter("=2")!=null && req.getParameter("=3")!=null) { //edit orders
             userid= Integer.parseInt(req.getParameter("=2"));
             flightid= Integer.parseInt(req.getParameter("=3"));
         }
-
         if(but14!=null){ //add order
             try{
                 ReservTripTable rtt=new ReservTripTable();

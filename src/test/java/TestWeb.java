@@ -15,12 +15,6 @@ public class TestWeb {
     ArrayList onlycities=new ArrayList();
     ArrayList onlycities2=new ArrayList();
 
-    @Before
-    public void init(){
-
-
-    }
-
     @Ignore
     public void uac(){
         try {
@@ -28,7 +22,8 @@ public class TestWeb {
             System.out.println(ut.getAllUsersFromDB());
             ut.editUser(1, "Administrator", 12, "admin", "admin", 2);
             ut.closeConnection();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -39,20 +34,15 @@ public class TestWeb {
             ReservTripTable rtt=new ReservTripTable();
             System.out.println(rtt.getAllOrdersFromDB());
             rtt.closeConnection();
-
-
             //id-user id-flight for method addOrder(1,2)
-                ReservTripTable rtt2=new ReservTripTable();
-                rtt2.deleteOrderByID(4);
-                rtt2.closeConnection();
-
-
-
+            ReservTripTable rtt2=new ReservTripTable();
+            rtt2.deleteOrderByID(4);
+            rtt2.closeConnection();
             ReservTripTable rtt3=new ReservTripTable();
             System.out.println(rtt3.getAllOrdersFromDB());
             rtt3.closeConnection();
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -66,18 +56,10 @@ public class TestWeb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         for(int i=0;i<cabarraycities.size();i++){
-
             onlycities = (ArrayList)cabarraycities.get(i);
             onlycities2.add(onlycities.get(1));
-
         }
         System.out.println(onlycities2);
-    }
-
-    @After
-    public void flush(){
-
     }
 }

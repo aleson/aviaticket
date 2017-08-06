@@ -17,7 +17,6 @@ public class Admin extends HttpServlet {
     private User user;
     private String name;
     private List<User> array;
-
     private int userid; //fot clients
     private String editname;
     private float editmoney;
@@ -42,11 +41,6 @@ public class Admin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
-        //====================to clients==========================================
-        //========================================================================
-        //========================================================================
-
         String str=req.getParameter("x");
         String but1=req.getParameter("del");
         if(str!=null) {
@@ -61,7 +55,6 @@ public class Admin extends HttpServlet {
         }
         req.setAttribute("list_size",array.size());
         req.setAttribute("array",array);
-
         if(str!=null) {
             if (but1 != null) { //delete user
                 if (Integer.parseInt(str) > 1) { //1 - admin number
@@ -78,14 +71,12 @@ public class Admin extends HttpServlet {
         String buf=req.getParameter("re");
         if(buf!=null)
         {
-
             userid=Integer.parseInt(req.getParameter("1"));
             editname=req.getParameter("2");
             editmoney=Float.parseFloat(req.getParameter("3"));
             editlogin=req.getParameter("4");
             editpassword=req.getParameter("5");
             role=Integer.parseInt(req.getParameter("6"));
-
             try{
                 UsersTable ut = new UsersTable();
                 //id fio money login pass role
@@ -99,6 +90,5 @@ public class Admin extends HttpServlet {
             }
         }
         req.getRequestDispatcher("adminpanel.jsp").forward(req, resp);
-
     }
 }

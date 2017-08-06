@@ -19,6 +19,7 @@ public class Registration extends HttpServlet {
     private static String login;
     private static String password;
     private static float money;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(resp.getContentType());
@@ -30,24 +31,20 @@ public class Registration extends HttpServlet {
         password=req.getParameter("passwordR");
         Pattern p=Pattern.compile("[0-9]+");
         Matcher n = p.matcher(req.getParameter("moneyR"));
-        if(n.matches()==false){
+        if(!n.matches()){
             money = -404;
-
         }
         else {
             money = Float.parseFloat(req.getParameter("moneyR"));
         }
         //validates
-
         if(money!=-404) {
-
             User user=new User();
             user.setFio(name);
             user.setLogin(login);
             user.setPass(password);
             user.setMoney(money);
             user.setRole(1);
-
             try {
                 UsersTable utt=new UsersTable();
                 utt.addUser(user);
@@ -56,20 +53,18 @@ public class Registration extends HttpServlet {
                 req.setAttribute("isError2",isError);
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
 
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
                 isError=true;
                 req.setAttribute("isError2",isError);
                 req.getRequestDispatcher("registration.jsp").forward(req, resp);
             }
-
-
         }
-        else{
+        else {
                 isError=true;
                 req.setAttribute("isError2",isError);
                 req.getRequestDispatcher("registration.jsp").forward(req, resp);
         }
     }
-
 }
